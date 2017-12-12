@@ -1,7 +1,14 @@
 # PROJECT SHOPPING-LIST
 
 ## OBJECTIVE
-The intention of this project is to create a single-page application that allows users to search for nutritional information via the USDA API. The user can create a profile page that stores information about foods they are interested in.
+The intention of this project is to create a single-page application that allows users to search for nutritional information via the `USDA NDB API`. The user can create a profile page that stores information about foods they are interested in.
+
+## FEATURES
+- User can search the USDA database via the app.
+- User can save information via user profiles.
+
+## POSSIBLE FEATURES
+- Locations of local stores to purchase foods.
 
 ## TECHNOLOGY
 ### Front-End
@@ -14,7 +21,6 @@ The intention of this project is to create a single-page application that allows
 - `USDA NDB API` [(link)](https://ndb.nal.usda.gov/ndb/doc/index)
 
 ## WIREFRAMES
-
 **HOMEPAGE**
 ![HOME](https://i.imgur.com/rqErNeG.jpg?1)
 
@@ -31,7 +37,6 @@ The intention of this project is to create a single-page application that allows
 ![PROFILE](https://i.imgur.com/QiUXINq.jpg?1)
 
 ## USER STORIES
-
 ### CREATING A PROFILE
 1. On the homepage, click on the REGISTER button to enter the registration page.
 2. Fill out and submit the form on the registration page.
@@ -47,3 +52,6 @@ The intention of this project is to create a single-page application that allows
 ### SAVING A FOOD
 1. While logged in, search for the food of interest.
 2. On the food page, press the SAVE button.
+
+## PROJECT BOARD
+[Link.](https://github.com/danny-eng/nutrition-app/projects/1)
