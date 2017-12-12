@@ -56,9 +56,11 @@ The intention of this project is to create a single-page application that allows
 ## TABLE STRUCTURE
 ### USERS
 |**id**|**username**|**password_digest**|**first_name**|**last_name**|**email**|
+|:-:|:-:|:-:|:-:|:-:|:-:|
 
 ### FAVORITES
 |**id**|**user_id**|**ndbno**|
+|:-:|:-:|:-:|
 
 ## PROJECT BOARD
 [Link.](https://github.com/danny-eng/nutrition-app/projects/1)
