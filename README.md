@@ -45,7 +45,7 @@ The intention of this project is to create a single-page application that allows
 5. To log in (after being logged out), click on the LOGIN button on the header and fill out the form.
 
 ### FINDING A FOOD
-1. On the homepage, enter a search term on the search bar and search.
+1. On the homepage, enter a search term on the search bar and search. (Example: apples.)
 2. On the list of results that return, select the desired item.
 3. The page that renders after selection will reflect the desired information.
 
