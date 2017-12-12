@@ -1,4 +1,4 @@
-# PROJECT SHOPPING-LIST
+# PROJECT NUTRIENT-MINDED
 
 ## OBJECTIVE
 The intention of this project is to create a single-page application that allows users to search for nutritional information via the `USDA NDB API`. The user can create a profile page that stores information about foods they are interested in.
