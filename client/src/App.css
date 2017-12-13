@@ -1,0 +1,19 @@
+
+body {
+  overflow: hidden;
+}
+
+.App {
+  overflow: scroll;
+}
+
+.search {
+}
+
+.header {
+  position: fixed;
+  height: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
