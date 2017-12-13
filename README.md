@@ -3,12 +3,12 @@
 ## OBJECTIVE
 The intention of this project is to create a single-page application that allows users to search for nutritional information via the `USDA NDB API`. The user can create a profile page that stores information about foods they are interested in.
 
-## FEATURES
+## MVP FEATURES
 - User can search the USDA database via the app.
-- User can save information via user profiles.
+- User can save information about specific foods via their user profile.
 
 ## POSSIBLE FEATURES
-- Locations of local stores to purchase foods.
+- Locations of local stores to purchase foods using a crawler.
 
 ## TECHNOLOGY
 ### Front-End
