@@ -27,7 +27,7 @@ class Register extends Component {
           password: this.state.registerPassword,
           email: this.state.registerEmail,
           first_name: this.state.registerFirstName,
-          last_name: this.state.registerLastName,
+          last_name: this.state.registerLastName
         }
       }),
       headers: {
@@ -67,7 +67,7 @@ class Register extends Component {
   render(){
     return (
       <div>
-        <form onSubmit={this.handleLoginSubmit}>
+        <form onSubmit={this.handleRegisterSubmit}>
           <input
             name="registerUsername"
             placeholder="username" 

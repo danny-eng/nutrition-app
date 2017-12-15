@@ -20,7 +20,7 @@ class Login extends Component {
       method: 'POST',
       body: JSON.stringify({
         username: this.state.loginUserName,
-        password: this.state.loginPassword,
+        password: this.state.loginPassword
       }),
       headers: {
         'Content-Type': 'application/json',
