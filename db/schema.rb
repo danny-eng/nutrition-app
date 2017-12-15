@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20171213142711) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "ndbno"
-    t.json "data"
+    t.string "name"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

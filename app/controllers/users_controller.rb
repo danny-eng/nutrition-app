@@ -1,9 +1,15 @@
 class UsersController < ApiController
-  before_action :require_login, except: [:create]
+  before_action :require_login, except: [:create, :show]
 
   def create
     user = User.create!(user_params)
     render json: { token: user.auth_token }
+  end
+
+  def show
+    user_id = User.find_by(auth_token: params[:id]).id
+    favorites = Favorite.where(user_id: user_id)
+    render json: { favorites: favorites }
   end
 
   def profile

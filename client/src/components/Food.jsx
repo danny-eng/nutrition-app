@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 class Food extends Component {
 
@@ -19,6 +20,7 @@ class Food extends Component {
           )}
         )}
         <div onClick={() => this.props.returnToSearch()}><p>Return to search results</p></div>
+        <Link to="/profile" onClick={() => this.props.saveFood(this.props.foodData.report.food.ndbno, this.props.foodData.report.food.name)}><p>Save</p></Link>
       </div>
     )
   }

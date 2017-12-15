@@ -7,6 +7,10 @@ class ApiController < ApplicationController
     @current_user ||= authenticate_token
   end
 
+  def current_id
+    show_user_id
+  end
+
   protected
 
   def render_unauthorized(message)
@@ -21,4 +25,11 @@ class ApiController < ApplicationController
       User.find_by(auth_token: token)
     end
   end
+
+  def show_user_id
+    authenticate_with_http_token do | token, options |
+      User.find_by(auth_token: token).id
+    end
+  end
+
 end

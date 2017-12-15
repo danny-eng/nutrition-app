@@ -1,5 +1,5 @@
 class FavoritesController < ApiController
-  before_action :require_login, except: [:index, :show]
+  before_action :require_login, except: [:index, :show, :show_user]
 
   def index
     favorites = Favorite.all
@@ -16,19 +16,20 @@ class FavoritesController < ApiController
     favorite = Favorite.new(favorite_params)
     favorite.user = current_user
 
-    if favorite.save
-      render json: {
-        message: 'ok',
-        favorite: favorite,
-      }
-    else
-      render json: {message: 'Could not save favorite'}
-    end
+      if favorite.save
+        render json: {
+          message: 'ok',
+          favorite: favorite,
+        }
+      else
+        render json: {message: 'Could not save favorite'}
+      end
+
   end
 
   private
   def favorite_params
-    params.require(:favorite).permit(:ndbno, :data)
+    params.require(:favorite).permit(:ndbno, :name)
   end
 
 end

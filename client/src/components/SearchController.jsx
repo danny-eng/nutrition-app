@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 
+import Auth from '../modules/Auth'
+
 import Food from './Food'
 import Search from './Search'
 import Results from './Results'
@@ -17,6 +19,7 @@ class SearchController extends Component {
     this.getFood = this.getFood.bind(this)
     this.getResults = this.getResults.bind(this)
     this.returnToSearch = this.returnToSearch.bind(this)
+    this.saveFood = this.saveFood.bind(this)
   }
 
   getResults(searchQuery){
@@ -56,6 +59,23 @@ class SearchController extends Component {
     })
   }
 
+  saveFood(ndbno, name){
+    fetch('/favorites', {
+      method: 'POST',
+      body: JSON.stringify({
+        favorite: {
+          ndbno: ndbno,
+          name: name
+        }
+      }),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Token ${Auth.getToken()}`,
+        token: Auth.getToken(),
+      }
+    }).then(res => res.json())
+  }
+
   render(){
     return (
       <div>
@@ -67,6 +87,7 @@ class SearchController extends Component {
             <Food
               foodData={this.state.foodData}
               returnToSearch={this.returnToSearch}
+              saveFood={this.saveFood}
             />
           ) : (
             <Results

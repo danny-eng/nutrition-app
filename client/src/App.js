@@ -18,10 +18,12 @@ class App extends Component {
     super(props)
     this.state = {
       auth: Auth.isUserAuthenticated(),
-      recentSearchData: {},
+      profileData: null,
+      profileDataLoaded: false,
+      recentSearchData: null,
       recentSearch: false,
-      recentFoodData: {},
-      recentFood: false
+      recentFoodData: null,
+      recentFood: false,
     }
     this.checkAuthenticate = this.checkAuthenticate.bind(this)
     this.logoutUser = this.logoutUser.bind(this)
@@ -71,7 +73,8 @@ class App extends Component {
                 )
               )} />
               <Route exact path="/profile" render={() =>
-                <Profile />
+                <Profile
+                />
               } />
               <Route exact path="/register" render={() =>
                 <Register />
