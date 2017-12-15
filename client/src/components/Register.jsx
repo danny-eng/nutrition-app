@@ -18,33 +18,35 @@ class Register extends Component {
   }
 
   handleRegisterSubmit(e) {
-  e.preventDefault();
-  fetch('/users', {
-    method: 'POST',
-    body: JSON.stringify({
-      user: {
-        username: this.state.registerUsername,
-        password: this.state.registerPassword,
-        email: this.state.registerEmail,
-        first_name: this.state.registerFirstName,
-        last_name: this.state.registerLastName,
+    e.preventDefault();
+    fetch('/users', {
+      method: 'POST',
+      body: JSON.stringify({
+        user: {
+          username: this.state.registerUsername,
+          password: this.state.registerPassword,
+          email: this.state.registerEmail,
+          first_name: this.state.registerFirstName,
+          last_name: this.state.registerLastName,
+        }
+      }),
+      headers: {
+        'Content-Type': 'application/json',
       }
-    }),
-    headers: {
-      'Content-Type': 'application/json',
-    }
-  }).then(res => res.json())
-  .then(res => {
-    if (res.token) {
-      Auth.authenticateToken(res.token);
-      this.setState({
-        auth: Auth.isUserAuthenticated(),
-      })
-    }
-  }).catch(err => {
-    console.log(err);
-  })
-}
+    }).then(res => res.json())
+    .then(res => {
+      console.log("should be okay...")
+      if (res.token) {
+        Auth.authenticateToken(res.token);
+        this.setState({
+          auth: Auth.isUserAuthenticated(),
+        })
+      }
+    }).catch(err => {
+      console.log(err);
+    })
+
+  }
 
   handleChange(e){
     let name = e.target.name
@@ -56,39 +58,41 @@ class Register extends Component {
 
   render(){
     return (
-      <form onSubmit={this.handleLoginSubmit}>
-        <input
-          name="registerUsername"
-          placeholder="username" 
-          value={this.state.registerUsername}
-          onChange={this.handleChange}
-        />
-        <input
-          name="registerPassword"
-          placeholder="password" 
-          value={this.state.registerPassword}
-          onChange={this.handleChange}
-        />
-        <input
-          name="registerEmail"
-          placeholder="e-mail" 
-          value={this.state.registerEmail}
-          onChange={this.handleChange}
-        />
-        <input
-          name="registerFirstName"
-          placeholder="First Name" 
-          value={this.state.registerFirstName}
-          onChange={this.handleChange}
-        />
-        <input
-          name="registerLastName"
-          placeholder="Last Name" 
-          value={this.state.registerLastName}
-          onChange={this.handleChange}
-        />
-        <input type="submit" value="Register" />
-      </form>
+      <div className="margin-t">
+        <form onSubmit={this.handleLoginSubmit}>
+          <input
+            name="registerUsername"
+            placeholder="username" 
+            value={this.state.registerUsername}
+            onChange={this.handleChange}
+          />
+          <input
+            name="registerPassword"
+            placeholder="password" 
+            value={this.state.registerPassword}
+            onChange={this.handleChange}
+          />
+          <input
+            name="registerEmail"
+            placeholder="e-mail" 
+            value={this.state.registerEmail}
+            onChange={this.handleChange}
+          />
+          <input
+            name="registerFirstName"
+            placeholder="First Name" 
+            value={this.state.registerFirstName}
+            onChange={this.handleChange}
+          />
+          <input
+            name="registerLastName"
+            placeholder="Last Name" 
+            value={this.state.registerLastName}
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Register" />
+        </form>
+      </div>
     )
   }
 }

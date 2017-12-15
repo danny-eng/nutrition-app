@@ -27,11 +27,10 @@ class Login extends Component {
       }
     }).then(res => res.json())
     .then(res => {
-      console.log(res);
       if (res.token) {
         Auth.authenticateToken(res.token);
+        this.props.checkAuthenticate()
         this.setState({
-          auth: Auth.isUserAuthenticated(),
           loginUserName: '',
           loginPassword: '',
         })
@@ -51,21 +50,25 @@ class Login extends Component {
 
   render(){
     return (
-      <form onSubmit={this.handleLoginSubmit}>
-        <input
-          name="loginUserName"
-          placeholder="Username" 
-          value={this.state.loginUserName}
-          onChange={this.handleChange}
-        />
-        <input
-          name="loginPassword"
-          placeholder="Password" 
-          value={this.state.loginPassword}
-          onChange={this.handleChange}
-        />
-        <input type="submit" value="Login" />
-      </form>
+      <div className="margin-t">
+        <form onSubmit={this.handleLoginSubmit}>
+          <input
+            name="loginUserName"
+            type="textfield"
+            placeholder="Username" 
+            value={this.state.loginUserName}
+            onChange={this.handleChange}
+          />
+          <input
+            name="loginPassword"
+            type="textfield"
+            placeholder="Password" 
+            value={this.state.loginPassword}
+            onChange={this.handleChange}
+          />
+          <input type="submit" value="Login" />
+        </form>
+      </div>
     )
   }
 }

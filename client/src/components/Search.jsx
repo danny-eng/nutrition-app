@@ -15,8 +15,10 @@ class Search extends Component {
   }
 
   handleChange(e){
+    let name = e.target.name
+    let value = e.target.value
     this.setState({
-      search: e.target.value
+      [name]: value
     })
   }
 
@@ -36,6 +38,7 @@ class Search extends Component {
       this.setState({
         data: res
       })
+      this.props.sendResults(res)
     })
   }
 

@@ -3,8 +3,15 @@ body {
   overflow: hidden;
 }
 
+.navigation-button {
+  margin: 5px;
+}
+
 .App {
-  overflow: scroll;
+  min-height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  display: flex;
 }
 
 .search {
@@ -16,4 +23,14 @@ body {
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.margin-t {
+  margin-top: 25px;
+}
+
+.results-list {
+  height: 90vh;
+  width: 100vw;
+  overflow: scroll;
 }
