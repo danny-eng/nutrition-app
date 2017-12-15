@@ -56,11 +56,11 @@ class Register extends Component {
 
   componentWillUnmount(){
     this.setState({
-      registerUsername: "",
-      registerPassword: "",
-      registerEmail: "",
-      registerFirstName: "",
-      registerLastName: "",
+      registerUsername: '',
+      registerPassword: '',
+      registerEmail: '',
+      registerFirstName: '',
+      registerLastName: '',
     })
   }
 

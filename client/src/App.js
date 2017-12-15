@@ -24,22 +24,12 @@ class App extends Component {
       recentFood: false
     }
     this.checkAuthenticate = this.checkAuthenticate.bind(this)
-    this.clearSearch = this.clearSearch.bind(this)
     this.logoutUser = this.logoutUser.bind(this)
-    this.sendFood = this.sendFood.bind(this)
-    this.sendResults = this.sendResults.bind(this)
   }
 
   checkAuthenticate(){
     this.setState({
       auth: Auth.isUserAuthenticated(),
-    })
-  }
-
-  clearSearch(){
-    this.setState({
-      recentFoodData: {},
-      recentFood: false
     })
   }
 
@@ -58,39 +48,17 @@ class App extends Component {
     })
   }
 
-  sendFood(ndbno){
-    fetch(`https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&type=b&format=json&api_key=QIH0VoWhfdeREixvllH9ohRQLHfp9TPKk5F78Owm`)
-    .then(res => res.json())
-    .then(res => {
-      this.setState({
-        recentFoodData: res,
-        recentFood: true
-      })
-    })
-  }
-
-  sendResults(data){
-    this.setState({
-      recentSearchData: data,
-      recentSearch: true
-    })
-  }
-
   // -----
 
   render() {
-    console.log(this.state.auth)
-    console.log(Auth.getToken())
     return (
       <Router>
         <div className="App">
           <Header
             auth={this.state.auth}
-            clearSearch={this.clearSearch}
             logoutUser={this.logoutUser}
-            sendResults={this.sendResults}
           />
-          <div className="main-content margin-t">
+          <div className="main-content">
             <Switch>
               <Route exact path="/" render={() =>
                 <SearchController />

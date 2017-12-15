@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Auth from '../modules/Auth'
 
@@ -12,6 +13,13 @@ class Login extends Component {
     }
     this.handleLoginSubmit = this.handleLoginSubmit.bind(this)
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      loginUserName: '',
+      loginPassword: '',
+    })
   }
 
   handleLoginSubmit(e){
@@ -33,13 +41,6 @@ class Login extends Component {
       }
     }).catch(err => {
       console.log(err);
-    })
-  }
-
-  componentWillUnmount(){
-    this.setState({
-      loginUserName: '',
-      loginPassword: '',
     })
   }
 
@@ -69,6 +70,7 @@ class Login extends Component {
           />
           <input type="submit" value="Login" />
         </form>
+        <Link to="/">Return to search</Link>
       </div>
     )
   }
