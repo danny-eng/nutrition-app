@@ -30,13 +30,16 @@ class Login extends Component {
       if (res.token) {
         Auth.authenticateToken(res.token);
         this.props.checkAuthenticate()
-        this.setState({
-          loginUserName: '',
-          loginPassword: '',
-        })
       }
     }).catch(err => {
       console.log(err);
+    })
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      loginUserName: '',
+      loginPassword: '',
     })
   }
 
@@ -50,18 +53,16 @@ class Login extends Component {
 
   render(){
     return (
-      <div className="margin-t">
+      <div>
         <form onSubmit={this.handleLoginSubmit}>
           <input
             name="loginUserName"
-            type="textfield"
             placeholder="Username" 
             value={this.state.loginUserName}
             onChange={this.handleChange}
           />
           <input
             name="loginPassword"
-            type="textfield"
             placeholder="Password" 
             value={this.state.loginPassword}
             onChange={this.handleChange}

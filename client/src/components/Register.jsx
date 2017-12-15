@@ -35,7 +35,6 @@ class Register extends Component {
       }
     }).then(res => res.json())
     .then(res => {
-      console.log("should be okay...")
       if (res.token) {
         Auth.authenticateToken(res.token);
         this.setState({
@@ -45,7 +44,6 @@ class Register extends Component {
     }).catch(err => {
       console.log(err);
     })
-
   }
 
   handleChange(e){
@@ -56,9 +54,19 @@ class Register extends Component {
     })
   }
 
+  componentWillUnmount(){
+    this.setState({
+      registerUsername: "",
+      registerPassword: "",
+      registerEmail: "",
+      registerFirstName: "",
+      registerLastName: "",
+    })
+  }
+
   render(){
     return (
-      <div className="margin-t">
+      <div>
         <form onSubmit={this.handleLoginSubmit}>
           <input
             name="registerUsername"
