@@ -17,6 +17,10 @@ body {
 .search {
 }
 
+.identifier {
+  width: 100vw;
+}
+
 .header {
   position: fixed;
   height: 10px;
@@ -27,6 +31,10 @@ body {
 
 .margin-t {
   margin-top: 25px;
+}
+
+.main-content {
+  overflow: scroll;
 }
 
 .results-list {

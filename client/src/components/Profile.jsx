@@ -13,22 +13,26 @@ class Profile extends Component {
       profileDataLoaded: false
     }
     this.getFavorites = this.getFavorites.bind(this)
+    this.refreshFavorites = this.refreshFavorites.bind(this)
   }
 
   componentDidMount(){
-    this.getFavorites()
-    this.getFavorites()
-    this.getFavorites()
-    this.getFavorites()
+    setTimeout(
+      this.refreshFavorites(),
+      5000
+    )
+  }
+
+  refreshFavorites(){
+    this.setState({
+      profileData: null,
+      profileDataLoaded: false
+    })
     this.getFavorites()
   }
 
   getFavorites(){
     let token = Auth.getToken()
-    this.setState({
-      profileData: null,
-      profileDataLoaded: false
-    })
     axios(`/users/${token}`, {
       method: 'GET'
     })
@@ -37,6 +41,13 @@ class Profile extends Component {
         profileData: res.data,
         profileDataLoaded: true
       })
+    })
+  }
+
+  componentWillUnmount(){
+    this.setState({
+      profileData: null,
+      profileDataLoaded: false
     })
   }
 
@@ -53,7 +64,7 @@ class Profile extends Component {
               )
           })
         ) : (
-          <p>You do not have any favorites.</p>
+          <p>Loading...</p>
         )}
       </div>
     )

@@ -7,7 +7,7 @@ function Header(props){
       <p></p>
       {props.auth ? (
         <div className="navigation-buttons">
-          <Link className="navigation-button" to="/profile">Profile</Link>
+          <Link className="navigation-button" to="/profile" onClick={props.getFavorites}>Profile</Link>
           <Link className="navigation-button" to="/logout" onClick={props.logoutUser}>Logout</Link>
         </div>
       ) : (

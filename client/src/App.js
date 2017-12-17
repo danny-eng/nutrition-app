@@ -18,8 +18,6 @@ class App extends Component {
     super(props)
     this.state = {
       auth: Auth.isUserAuthenticated(),
-      profileData: null,
-      profileDataLoaded: false,
       recentSearchData: null,
       recentSearch: false,
       recentFoodData: null,
