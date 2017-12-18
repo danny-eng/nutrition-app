@@ -4,26 +4,36 @@ import { Link } from 'react-router-dom'
 import Auth from '../modules/Auth'
 import axios from 'axios'
 
+import Food from './Food'
+import ProfileList from './ProfileList'
+
 class Profile extends Component {
 
   constructor(props){
     super(props)
     this.state = {
       profileData: null,
-      profileDataLoaded: false
+      profileDataLoaded: false,
+      profileFoodData: null,
+      profileFoodDataLoaded: false,
     }
     this.getFavorites = this.getFavorites.bind(this)
+    this.getFood = this.getFood.bind(this)
     this.refreshFavorites = this.refreshFavorites.bind(this)
+    this.returnToProfile = this.returnToProfile.bind(this)
+    this.deleteFavorite = this.deleteFavorite.bind(this)
   }
 
   componentDidMount(){
-    setTimeout(
-      this.refreshFavorites(),
-      5000
-    )
+    this.refreshFavorites()
+    this.refreshFavorites()
+    this.refreshFavorites()
+    this.refreshFavorites()
+    this.refreshFavorites()
   }
 
   refreshFavorites(){
+    console.log("refreshing")
     this.setState({
       profileData: null,
       profileDataLoaded: false
@@ -44,28 +54,82 @@ class Profile extends Component {
     })
   }
 
+  getFood(ndbno){
+    this.setState({
+      profileFoodData: null,
+      profileFoodDataLoaded: false,
+    })
+    fetch(`https://api.nal.usda.gov/ndb/reports/?ndbno=${ndbno}&type=b&format=json&api_key=QIH0VoWhfdeREixvllH9ohRQLHfp9TPKk5F78Owm`)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        profileFoodData: res,
+        profileFoodDataLoaded: true,
+      })
+    })
+  }
+
+  returnToProfile(){
+    this.setState({
+      profileFoodData: null,
+      profileFoodDataLoaded: false,
+    })
+  }
+
   componentWillUnmount(){
     this.setState({
       profileData: null,
-      profileDataLoaded: false
+      profileDataLoaded: false,
+      profileFoodData: null,
+      profileFoodDataLoaded: false,
+    })
+  }
+
+  deleteFavorite(id){
+    console.log("deleting " + id)
+    fetch(`/favorites/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Token ${Auth.getToken()}`,
+        token: Auth.getToken(),
+      }
+    }).then(res => {
+      this.refreshFavorites()
+      this.refreshFavorites()
+      this.refreshFavorites()
+      this.refreshFavorites()
+      this.refreshFavorites()
     })
   }
 
   render(){
-    console.log(this.state.profileData)
     return (
       <div>
         <p>Profile</p>
         <Link to="/">Show Search</Link>
         {this.state.profileDataLoaded ? (
-          this.state.profileData.favorites.map(favorite => {
-              return (
-                <p key={favorite.ndbno}><b>{favorite.name}</b></p>
-              )
-          })
-        ) : (
-          <p>Loading...</p>
-        )}
+          this.state.profileFoodDataLoaded ? (
+            <Food
+              foodData={this.state.profileFoodData}
+              returnToProfile={this.returnToProfile}
+            />
+          ) : (
+            this.state.profileData.favorites.map(favorite => {
+                return (
+                  <ProfileList
+                    deleteFavorite={this.deleteFavorite}
+                    id={favorite.id}
+                    getFood={this.getFood}
+                    name={favorite.name}
+                    key={favorite.ndbno}
+                    ndbno={favorite.ndbno}
+                  />
+                )
+            })
+          )
+          ) : (
+            <p>Loading...</p>
+          )}
       </div>
     )
   }

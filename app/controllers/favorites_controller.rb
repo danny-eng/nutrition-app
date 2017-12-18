@@ -15,7 +15,6 @@ class FavoritesController < ApiController
   def create
     favorite = Favorite.new(favorite_params)
     favorite.user = current_user
-
       if favorite.save
         render json: {
           message: 'ok',
@@ -24,7 +23,13 @@ class FavoritesController < ApiController
       else
         render json: {message: 'Could not save favorite'}
       end
+  end
 
+  def destroy
+    favorite = Favorite.delete(params[:id])
+    render json: {
+      message: 'delete successful',
+    }
   end
 
   private
