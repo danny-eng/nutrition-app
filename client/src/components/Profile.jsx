@@ -6,6 +6,7 @@ import axios from 'axios'
 
 import Food from './Food'
 import ProfileList from './ProfileList'
+import UpdatePassword from './UpdatePassword'
 
 class Profile extends Component {
 
@@ -107,6 +108,7 @@ class Profile extends Component {
       <div>
         <p>Profile</p>
         <Link to="/">Show Search</Link>
+        <UpdatePassword />
         {this.state.profileDataLoaded ? (
           this.state.profileFoodDataLoaded ? (
             <Food

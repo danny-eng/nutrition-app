@@ -1,5 +1,5 @@
 class FavoritesController < ApiController
-  before_action :require_login, except: [:index, :show, :show_user]
+  before_action :require_login, except: [:index, :show]
 
   def index
     favorites = Favorite.all
