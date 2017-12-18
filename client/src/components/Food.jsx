@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 class Food extends Component {
 
@@ -39,17 +39,8 @@ class Food extends Component {
             </div>
           )}
         )}
-        <Switch>
-          <Router exact path="/" render={() => {
-            <div>
-              <div onClick={() => this.props.returnToSearch()}><p>Return to search results</p></div>
-              <Link to="/profile" onClick={() => this.props.saveFood(this.props.foodData.report.food.ndbno, this.props.foodData.report.food.name)}><p>Save</p></Link>
-            </div>
-          }} />
-          <Router exact path="/profile" render={() => {
-            <div onClick={() => this.props.returnToProfile()}><p>Return to profile</p></div>
-          }} />
-        </Switch>
+        <div onClick={() => this.props.returnToSearch()}><p>Back</p></div>
+        <Link to="/profile" onClick={() => this.props.saveFood(this.props.foodData.report.food.ndbno, this.props.foodData.report.food.name)}><p>Save</p></Link>
       </div>
     )
   }

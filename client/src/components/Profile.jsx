@@ -111,7 +111,7 @@ class Profile extends Component {
           this.state.profileFoodDataLoaded ? (
             <Food
               foodData={this.state.profileFoodData}
-              returnToProfile={this.returnToProfile}
+              returnToSearch={this.returnToProfile}
             />
           ) : (
             this.state.profileData.favorites.map(favorite => {
