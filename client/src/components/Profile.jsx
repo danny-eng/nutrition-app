@@ -86,7 +86,6 @@ class Profile extends Component {
   }
 
   deleteFavorite(id){
-    console.log("deleting " + id)
     fetch(`/favorites/${id}`, {
       method: 'DELETE',
       headers: {

@@ -80,9 +80,9 @@ class App extends Component {
               )} />
               <Route exact path="/profile" render={() => (
                 this.state.auth ? (
-                <Profile />
+                  <Profile />
                 ) : (
-                <Redirect to="/login" />
+                  <Redirect to="/login" />
                 )
               )} />
               <Route exact path="/register" render={() => (

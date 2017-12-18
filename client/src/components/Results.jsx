@@ -3,13 +3,14 @@ import React, { Component } from 'react'
 import Result from './Result'
 
 class Results extends Component {
+
   render(){
     return (
       <div className="all-results">
         {this.props.resultsData.list ? (
           <div>
             <p>Searched for "{this.props.resultsData.list.q}".</p>
-            <p>Displaying results: {this.props.resultsData.list.start} to {this.props.resultsData.list.end} of {this.props.resultsData.list.total}</p>
+            <p>Displaying results: {this.props.resultsData.list.end - 25} to {this.props.resultsData.list.end} of {this.props.resultsData.list.total}</p>
             <div className="results-list">
               {this.props.resultsData.list.item.map(item => {
                 return (

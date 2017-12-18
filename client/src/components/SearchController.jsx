@@ -21,6 +21,8 @@ class SearchController extends Component {
     this.getResults = this.getResults.bind(this)
     this.returnToSearch = this.returnToSearch.bind(this)
     this.saveFood = this.saveFood.bind(this)
+    this.plusOffset = this.plusOffset.bind(this)
+    this.minusOffset = this.minusOffset.bind(this)
   }
 
   getResults(searchQuery){
@@ -38,12 +40,28 @@ class SearchController extends Component {
     })
   }
 
+  plusOffset(){
+    let offset = this.state.offset + 25
+    this.getResultsOffset(this.state.resultsData.list.q, offset)
+    this.setState({
+      offset: offset
+    })
+  }
+
+  minusOffset(){
+    let offset = this.state.offset - 25
+    this.getResultsOffset(this.state.resultsData.list.q, offset)
+    this.setState({
+      offset: offset
+    })
+  }
+
   getResultsOffset(searchQuery, offset){
     this.setState({
       resultsData: null,
       resultsDataLoaded: false
     })
-    fetch(`https://api.nal.usda.gov/ndb/search/?format=json&q=${searchQuery}&sort=n&max=25&offset=0&api_key=QIH0VoWhfdeREixvllH9ohRQLHfp9TPKk5F78Owm`)
+    fetch(`https://api.nal.usda.gov/ndb/search/?format=json&q=${searchQuery}&sort=n&max=${offset + 25}&offset=${offset}&api_key=QIH0VoWhfdeREixvllH9ohRQLHfp9TPKk5F78Owm`)
     .then(res => res.json())
     .then(res => {
       this.setState({
@@ -116,6 +134,23 @@ class SearchController extends Component {
             <p className="bold">Please enter a search term.</p>
           </div>
         )}
+        {this.state.resultsDataLoaded ? (
+          this.state.foodDataLoaded ? (
+            <p></p>
+          ) : (
+            <div className="tray">
+              {this.state.offset > 0 ? (
+                <div className="tray-button" onClick={() => this.minusOffset()}><p>Prev</p></div>
+              ) : (
+                <p></p>
+              )}
+              <div className="tray-button" onClick={() => this.plusOffset()}><p>Next</p></div>
+            </div>
+          )
+          ) : (
+            <p></p>
+          )
+        }
       </div>
     )
   }
