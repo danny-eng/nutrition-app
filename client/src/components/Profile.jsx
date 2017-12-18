@@ -34,7 +34,6 @@ class Profile extends Component {
   }
 
   refreshFavorites(){
-    console.log("refreshing")
     this.setState({
       profileData: null,
       profileDataLoaded: false

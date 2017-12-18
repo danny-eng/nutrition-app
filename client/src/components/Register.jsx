@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 import Auth from '../modules/Auth'
 
@@ -7,6 +8,7 @@ class Register extends Component {
   constructor(props){
     super(props)
     this.state = {
+      justRegistered: false,
       registerUsername: "",
       registerPassword: "",
       registerEmail: "",
@@ -37,9 +39,7 @@ class Register extends Component {
     .then(res => {
       if (res.token) {
         Auth.authenticateToken(res.token);
-        this.setState({
-          auth: Auth.isUserAuthenticated(),
-        })
+        this.props.checkLogin(Auth.isUserAuthenticated())
       }
     }).catch(err => {
       console.log(err);
@@ -66,23 +66,23 @@ class Register extends Component {
 
   render(){
     return (
-      <div>
+      <div className="inner-contents register">
         <form onSubmit={this.handleRegisterSubmit}>
           <input
             name="registerUsername"
-            placeholder="username" 
+            placeholder="Username" 
             value={this.state.registerUsername}
             onChange={this.handleChange}
           />
           <input
             name="registerPassword"
-            placeholder="password" 
+            placeholder="Password" 
             value={this.state.registerPassword}
             onChange={this.handleChange}
           />
           <input
             name="registerEmail"
-            placeholder="e-mail" 
+            placeholder="E-mail" 
             value={this.state.registerEmail}
             onChange={this.handleChange}
           />
@@ -100,6 +100,7 @@ class Register extends Component {
           />
           <input type="submit" value="Register" />
         </form>
+        <Link className="return-link" to="/">Return to search</Link>
       </div>
     )
   }

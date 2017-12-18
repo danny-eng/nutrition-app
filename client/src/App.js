@@ -5,6 +5,7 @@ import './App.css'
 
 import Auth from './modules/Auth'
 
+import Footer from './components/Footer'
 import Header from './components/Header'
 import Login from './components/Login'
 import Profile from './components/Profile'
@@ -25,6 +26,7 @@ class App extends Component {
     }
     this.checkAuthenticate = this.checkAuthenticate.bind(this)
     this.logoutUser = this.logoutUser.bind(this)
+    this.checkLogin = this.checkLogin.bind(this)
   }
 
   checkAuthenticate(){
@@ -45,6 +47,12 @@ class App extends Component {
       this.setState({
         auth: Auth.isUserAuthenticated(),
       })
+    })
+  }
+
+  checkLogin(bool){
+    this.setState({
+      auth: bool
     })
   }
 
@@ -70,19 +78,29 @@ class App extends Component {
                   <Login checkAuthenticate={this.checkAuthenticate} />
                 )
               )} />
-              <Route exact path="/profile" render={() =>
-                <Profile
-                />
-              } />
-              <Route exact path="/register" render={() =>
-                <Register />
-              } />
+              <Route exact path="/profile" render={() => (
+                this.state.auth ? (
+                <Profile />
+                ) : (
+                <Redirect to="/login" />
+                )
+              )} />
+              <Route exact path="/register" render={() => (
+                this.state.auth ? (
+                  <Redirect to="/profile" />
+                ) : (
+                  <Register
+                    checkLogin={this.checkLogin}
+                  />
+                )
+              )} />
               <Route exact path="/logout" render={() =>
                 <Redirect to="/" />
               } />
               <Route component={Return} />
             </Switch>
           </div>
+          <Footer />
         </div>
       </Router>
     )

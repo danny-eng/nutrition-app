@@ -15,6 +15,7 @@ class SearchController extends Component {
       foodDataLoaded: false,
       resultsData: null,
       resultsDataLoaded: false,
+      offset: 0
     }
     this.getFood = this.getFood.bind(this)
     this.getResults = this.getResults.bind(this)
@@ -23,6 +24,21 @@ class SearchController extends Component {
   }
 
   getResults(searchQuery){
+    this.setState({
+      resultsData: null,
+      resultsDataLoaded: false
+    })
+    fetch(`https://api.nal.usda.gov/ndb/search/?format=json&q=${searchQuery}&sort=n&max=25&offset=0&api_key=QIH0VoWhfdeREixvllH9ohRQLHfp9TPKk5F78Owm`)
+    .then(res => res.json())
+    .then(res => {
+      this.setState({
+        resultsData: res,
+        resultsDataLoaded: true
+      })
+    })
+  }
+
+  getResultsOffset(searchQuery, offset){
     this.setState({
       resultsData: null,
       resultsDataLoaded: false
@@ -78,7 +94,7 @@ class SearchController extends Component {
 
   render(){
     return (
-      <div>
+      <div className="inner-contents">
         <Search
           getResults={this.getResults}
         />
@@ -96,7 +112,9 @@ class SearchController extends Component {
             />
           )
         ) : (
-          <p>Please enter a search term.</p>
+          <div className="message">
+            <p className="bold">Please enter a search term.</p>
+          </div>
         )}
       </div>
     )

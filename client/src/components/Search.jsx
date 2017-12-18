@@ -26,7 +26,7 @@ class Search extends Component {
 
   render() {
     return (
-      <div className="search">
+      <div className="search search-unique">
         <form onSubmit={this.handleSearchSubmit}>
           <input
             name="search"

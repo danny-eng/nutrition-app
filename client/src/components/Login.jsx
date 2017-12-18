@@ -54,7 +54,7 @@ class Login extends Component {
 
   render(){
     return (
-      <div>
+      <div className="inner-contents register">
         <form onSubmit={this.handleLoginSubmit}>
           <input
             name="loginUserName"
@@ -70,7 +70,7 @@ class Login extends Component {
           />
           <input type="submit" value="Login" />
         </form>
-        <Link to="/">Return to search</Link>
+        <Link className="return-link" to="/">Return to search</Link>
       </div>
     )
   }
