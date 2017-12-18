@@ -4,9 +4,9 @@ class ProfileList extends Component {
 
   render(){
     return (
-      <div className="favorite-item wide-fix">
-        <div onClick={() => this.props.getFood(this.props.ndbno)}><p><b>{this.props.name}</b></p></div>
-        <div onClick={() => this.props.deleteFavorite(this.props.id)}><p>X</p></div>
+      <div className="favorite-list">
+        <div onClick={() => this.props.getFood(this.props.ndbno)}><p className="under">{this.props.name}</p></div>
+        <div onClick={() => this.props.deleteFavorite(this.props.id)}><p className="red">✖</p></div>
       </div>
     )
   }

@@ -103,33 +103,44 @@ class Profile extends Component {
 
   render(){
     return (
-      <div>
-        <p>Profile</p>
-        <Link to="/">Show Search</Link>
-        <UpdatePassword />
-        {this.state.profileDataLoaded ? (
-          this.state.profileFoodDataLoaded ? (
-            <Food
-              foodData={this.state.profileFoodData}
-              returnToSearch={this.returnToProfile}
-            />
-          ) : (
-            this.state.profileData.favorites.map(favorite => {
-                return (
-                  <ProfileList
-                    deleteFavorite={this.deleteFavorite}
-                    id={favorite.id}
-                    getFood={this.getFood}
-                    name={favorite.name}
-                    key={favorite.ndbno}
-                    ndbno={favorite.ndbno}
-                  />
-                )
-            })
-          )
+      <div className="inner-contents">
+        <br/>
+        <p className="identifier">PROFILE</p>
+        <br/>
+        <div className="blue pad">
+          <p>Change Password</p>
+          <br/>
+          <UpdatePassword />
+        </div>
+        <div className="some-list">
+          <p className="identifier">Saved</p>
+          <br />
+          {this.state.profileDataLoaded ? (
+            this.state.profileFoodDataLoaded ? (
+              <Food
+                foodData={this.state.profileFoodData}
+                returnToSearch={this.returnToProfile}
+              />
+            ) : (
+              this.state.profileData.favorites.map(favorite => {
+                  return (
+                    <ProfileList
+                      deleteFavorite={this.deleteFavorite}
+                      id={favorite.id}
+                      getFood={this.getFood}
+                      name={favorite.name}
+                      key={favorite.ndbno}
+                      ndbno={favorite.ndbno}
+                    />
+                  )
+              })
+            )
           ) : (
             <p>Loading...</p>
           )}
+        </div>
+        <br/>
+        <Link to="/" className="fake-button">Show Search</Link>
       </div>
     )
   }
