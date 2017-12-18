@@ -27,9 +27,8 @@ class UpdatePassword extends Component {
     fetch(`/users/${token}`, {
       method: 'PUT',
       body: JSON.stringify({
-        user: {
-          new_password: this.state.newPassword
-      }}),
+          password: this.state.newPassword
+        }),
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Token ${Auth.getToken()}`,
@@ -41,7 +40,6 @@ class UpdatePassword extends Component {
         confirmPassword: ""
       })
     })
-    console.log("updated")
   }
 
   handleChange(e){

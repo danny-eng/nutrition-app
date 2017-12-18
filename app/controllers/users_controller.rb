@@ -17,9 +17,9 @@ class UsersController < ApiController
   end
 
   def update
-    user_id = User.find_by(auth_token: params[:id])
-    new_pass = BCrypt::Password.new(:new_password)
-    user_id.update_column(:password_digest, new_pass)
+    user = User.find_by(auth_token: params[:id])
+    user.password = params[:password]
+    user.save
   end
 
   private
