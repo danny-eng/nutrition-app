@@ -64,3 +64,6 @@ The intention of this project is to create a single-page application that allows
 
 ## PROJECT BOARD
 [Link.](https://github.com/danny-eng/nutrition-app/projects/1)
+
+more to be added...
+
