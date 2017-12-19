@@ -13,6 +13,7 @@ class Profile extends Component {
   constructor(props){
     super(props)
     this.state = {
+      updatedPassword: false,
       profileData: null,
       profileDataLoaded: false,
       profileFoodData: null,
@@ -23,6 +24,7 @@ class Profile extends Component {
     this.refreshFavorites = this.refreshFavorites.bind(this)
     this.returnToProfile = this.returnToProfile.bind(this)
     this.deleteFavorite = this.deleteFavorite.bind(this)
+    this.updatedPassword = this.updatedPassword.bind(this)
   }
 
   componentDidMount(){
@@ -69,6 +71,12 @@ class Profile extends Component {
     })
   }
 
+  updatedPassword(){
+    this.setState({
+      updatedPassword: true
+    })
+  }
+
   returnToProfile(){
     this.setState({
       profileFoodData: null,
@@ -110,7 +118,17 @@ class Profile extends Component {
         <div className="blue pad">
           <p>Change Password</p>
           <br/>
-          <UpdatePassword />
+          <UpdatePassword
+            updatedPassword={this.updatedPassword}
+          />
+          {this.state.updatedPassword ?
+            <div>
+              <br/>
+              <p className="message">Password updated.</p>
+            </div>
+            :
+            <p></p>
+          }
         </div>
         <div className="some-list">
           <p className="identifier">Saved</p>

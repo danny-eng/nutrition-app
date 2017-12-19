@@ -19,6 +19,7 @@ class UpdatePassword extends Component {
     e.preventDefault();
     if (this.state.newPassword === this.state.confirmPassword){
       this.updateUser()
+      this.props.updatedPassword()
     }
   }
 
@@ -53,8 +54,8 @@ class UpdatePassword extends Component {
   render(){
     return (
       <form onSubmit={(e) => this.handleUpdateSubmit(e)}>
-        <input onChange={(e) => this.handleChange(e)} name="newPassword" value={this.state.newPassword} placeholder="New Password"/>
-        <input onChange={(e) => this.handleChange(e)} name="confirmPassword" value={this.state.confirmPassword} placeholder="Confirm Password" />
+        <input type="password" onChange={(e) => this.handleChange(e)} name="newPassword" value={this.state.newPassword} placeholder="New Password"/>
+        <input type="password" onChange={(e) => this.handleChange(e)} name="confirmPassword" value={this.state.confirmPassword} placeholder="Confirm Password" />
         <input type="submit" value="Update" />
       </form>
     )
